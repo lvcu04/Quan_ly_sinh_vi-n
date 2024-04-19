@@ -13,6 +13,7 @@ if(!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    
     <?php include('admin_css.php'); ?>
     <title>Student Dashboard</title>
     <style>
@@ -91,22 +92,9 @@ if(!isset($_SESSION['username'])) {
             padding-left: 15px;
             text-align: center;
         }
-        .menu-text-with-icon{
-            align-items: center;
-        }
-        .menu-text-with-icon{
-            position: relative;
-        }
-        .menu-text-with-icon-label{
-            position: absolute;
-            top:3px;
-            
-        }
-        .hidden{
-            display: block;
-            width: 140px;
-            position: absolute;
-        }
+       
+        
+
     </style>
    
 </head>
@@ -120,25 +108,8 @@ if(!isset($_SESSION['username'])) {
             <a href="logout.php" class="btn btn-primary">Đăng xuất</a>
         </div>
     </header>
-    
-    <aside>
-        <ul>
-            <li><a href="studenthome.php"><i class="fas fa-home"></i>&nbsp;&nbsp;Trang chủ</a></li>
-            <li><a href="information.php"><i class="fas fa-tv"></i>&nbsp;&nbsp;Thông tin sinh viên</a></li>
-            <li>
-                <a href="javascript:void(0);" id="toggleStudy"><i class="fas fa-book"></i>&nbsp;&nbsp;
-                    Học tập<i class="fas fa-angle-down"></i>
-                </a>
-                <ul id="studySubmenu" class="hidden">
-                    <li><a href="submenu">Kết quả học tập</a></li>
-                    <li><a href="submenu">Lịch học</a></li>
-                </ul>
-            </li>
-            <li><a href="#"><i class="fas fa-check-square"></i>&nbsp;&nbsp;Đăng ký học phần</a></li>
-            <li><a href="#"><i class="fas fa-credit-card"></i>&nbsp;&nbsp;Học phí</a></li>
-            <li><a href="#"><i class="fas fa-cog"></i>&nbsp;&nbsp;Khác</a></li>
-        </ul>
-    </aside>
+    <?php include('student_sidebar.php'); ?>
+   
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -246,18 +217,7 @@ if(!isset($_SESSION['username'])) {
                 </div>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            
-            document.getElementById("toggleStudy").addEventListener("click", function () {
-                var submenu = document.getElementById("studySubmenu");
-                if (submenu.style.display === "block") {
-                    submenu.style.display = "none";
-                } else {
-                    submenu.style.display = "block";
-                }
-            });
-        });
-    </script>
+    
+    <script src="./js/student_sidebar.js"></script>
 </body> 
 </html>

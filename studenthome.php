@@ -41,6 +41,10 @@ if(!isset($_SESSION['username'])) {
             z-index: 99;
             
         }
+        .fa-angle-down{
+            padding-left: 15px;
+            text-align: center;
+        }
         
         
     </style>
@@ -56,9 +60,9 @@ if(!isset($_SESSION['username'])) {
         </div>
     </header>
     
-    <?php 
-        include("student_sidebar.php");
-    ?>
     
+        <?php include('student_sidebar.php'); ?>
+    
+        <script src="./js/student_sidebar.js"></script>
 </body>
 </html>

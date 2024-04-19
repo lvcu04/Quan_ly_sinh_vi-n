@@ -42,7 +42,6 @@ if($data==false)
         else 
         {
        
-
             $message = "username or password do not match";
 
             $_SESSION['loginMessage'] = $message;
