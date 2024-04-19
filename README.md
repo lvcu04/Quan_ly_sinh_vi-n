@@ -1,0 +1,3 @@
+-Cài Xampp -> lấy code đưa vào file htdocs(trong thư mục xampp) -> Bật start phần Apache và Mysql -> chạy code
+- Admin trong Mysql để sửa database
+- Có thể import và export database vào trong Phpadmin
