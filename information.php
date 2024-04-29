@@ -13,88 +13,13 @@ if(!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    
+    <link rel="stylesheet" href="./css/student_sidebar.css">
     <?php include('admin_css.php'); ?>
-    <title>Student Dashboard</title>
+    <title>Thông tin sinh viên</title>
     <style>
-        .notify{
-            color: white;
-            font-size: bold;
-            position: relative;
-        }
-        .notify:hover{
-            color: rgba(245, 240, 243, 0.8);
-            text-decoration: none!important;
-             
-        }
-        .count{
-            width: 17px;
-            height: 17px;
-            border-radius: 50%;
-            background-color: red;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            position: absolute;
-            right: 130px;
-            top:-10px;
-            z-index: 99;
-            
-        }
         .container-fluid{
           padding-left: 220px;
         }
-        .profile-userpic img{
-            width: 120px;
-            margin-top: -5%;
-            margin: 0 auto;
-            
-        }
-        .custom-jumbotron {
-            margin-top: 80px;
-       }
-       .portlet-body {
-         text-align: center;
-       }
-       .profile-userpic {
-            display: flex; 
-            flex-direction: column; 
-            align-items: flex-start; 
-        }
-
-        .form-group {
-            margin-top: 10px; 
-            padding-left: 40px;
-        }
-        .portlet-title{
-            border-bottom: 1px solid black;
-            min-height: 41px;
-        }
-        .bold{
-            font-weight: 700!important;
-            font-size: 20px;
-            color: #0099cc;
-        }
-        .information {
-        display: flex; 
-        flex-direction: column; 
-        align-items: flex-start;
-       }
-       .form-infor{
-            margin-top: 15px; 
-            padding-left: -10px;
-       }
-       .personal-info{
-        padding-top: 40px;
-       }
-        .fa-angle-down{
-            padding-left: 15px;
-            text-align: center;
-        }
-       
-        
-
     </style>
    
 </head>

@@ -98,8 +98,8 @@ $result = mysqli_query($data, $sql);
                         <td><?php echo $info['phone']; ?></td>
                         <td><?php echo $info['pob']; ?></td>
                         <td><?php echo $info['major']; ?></td>
-                        <td><?php echo "<button class='btn btn-danger'><a href='delete.php?student_id={$info['id']}' class='text-white'>Delete</a></button>"; ?></td>
-                        <td><?php echo "<button class='btn btn-info'><a href='update.php?student_id={$info['id']}' class='text-white'>Update</a></button>"; ?></td>
+                        <td><?php echo "<button class='btn btn-danger'><a href='delete.php?student_code={$info['code']}' class='text-white'>Delete</a></button>"; ?></td>
+                        <td><?php echo "<button class='btn btn-info'><a href='update.php?student_code={$info['code']}' class='text-white'>Update</a></button>"; ?></td>
                     </tr>
                 <?php } ?>
             </tbody>

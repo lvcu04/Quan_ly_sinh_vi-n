@@ -62,8 +62,8 @@ if(isset($_POST['add_student'])){
         .div_deg {
             background-color: skyblue;
             width: 400px;
-            padding-top: 70px;
-            padding-bottom: 70px;
+            padding-top: 40px;
+            padding-bottom:40px;
         }
         .date input {
             width: 185px;
@@ -71,6 +71,7 @@ if(isset($_POST['add_student'])){
         .submit {
             padding-top: 20px;
         }
+        
     </style>
 </head>
 <body>

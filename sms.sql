@@ -103,7 +103,7 @@ DROP TABLE IF EXISTS `subject`;
 CREATE TABLE `subject` (
    `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `subjectname` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `num_credit` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `major` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`code`),
@@ -143,7 +143,9 @@ CREATE TABLE `course` (
 
 -- Insert data into the course table
 INSERT INTO `course` (`id`,`code`, `time`, `room`, `teacher_code`, `subject_code`, `start_time`, `day_of_week`) VALUES
-('5','INT1255_1_FALL2018', '09:00 - 11:00', 'Room 101', 'HT1005', 'INT1254', '09:00', 'Monday');
+('5','INT1255_1_FALL2018', '09:00 - 11:00', 'H101', 'HT1005', 'INT1254', '09:00', 'Thứ hai')
+('9','INT1350_1_FALL2018', '12:00 - 3:00', 'H104', 'HT1006', 'INT350', '12:00', 'Thứ tư')
+('6','INT1620_1_FALL2018', '2:00 - 5:00', 'H102', 'HT1005', 'INT1620', '2:00', 'Thứ năm');
 
 DROP TABLE IF EXISTS `course_has_student`;
 
@@ -170,7 +172,6 @@ CREATE TABLE `result` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `chuyencan` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
   `giuaky` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
-  `baitap` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
   `cuoiky` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
   `c_h_s_code` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `status` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -181,8 +182,8 @@ CREATE TABLE `result` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table `result`
-INSERT INTO `result` (`id`, `chuyencan`, `giuaky`, `baitap`, `cuoiky`, `c_h_s_code`,`status`) VALUES
-(15, '9', '9', '9', '9',  'INT1255_1_FALL2018_CN22F1','STUDIED');
+INSERT INTO `result` (`id`, `chuyencan`, `giuaky`,  `cuoiky`, `c_h_s_code`,`status`) VALUES
+(15, '9', '9', '9',  'INT1255_1_FALL2018_CN22F1','Đã học');
 
 
 

@@ -31,71 +31,10 @@ session_start();
     ?>
     <div class="content">
     <div class="container-fluid">
-		<div class="jumbotron text-center my-5 py-4">
+		<div class="jumbotron text-center my-6 py-4">
 			<h2>PHẦN MỀM QUẢN LÝ SINH VIÊN</h2>
 		</div>
-		<div class="container-fluid">
-			
-			<div class="container-fluid bg-light my-5">
-				<div class="row border">
-					<!-- Quan ly danh sach sinh vien -->
-					<div class="col-6">
-						<div class="jumbotron text-center my-5 py-2">
-							<h4>QUẢN LÝ DANH SÁCH SINH VIÊN</h4>
-						</div>
-						<div class="row ">
-							<div class="col-4">
-								<div class="row my-1 py-2 mx-1 px-3 bg-info">
-									Hiển thị  <input type="text" id="input_num_of_student_to_show" value="10"> sinh viên. <input type="button" value="View" id="view_students_btn"><br>
-								</div>
-								<div class="row my-1 py-2 mx-1 px-3 bg-success">
-									Tìm kiếm  <input type="text" id="input_search"> <input type="button" value ="search" id="search_student_btn">
-								</div>`
-							</div>
-							<div class="col-8">
-								<div class="row my-1">
-									<div id="control_panel" class="row my-2 py-2">
-										<div id="tmp_info" class="col-12">
-											<div class="row py-1">
-												Mã SV: <input type="text" name="tmp_student_code" id="tmp_student_code">
-												Họ và tên: <input type="text" name="tmp_student_name" id="tmp_student_name">
-												Ngày sinh: <input type="text" name="tmp_student_dob" id="tmp_student_dob">
-												Nơi sinh: <input type="text" name="tmp_student_pob" id="tmp_student_pob">
-												Ngành: <input type="text" name="tmp_student_major" id="tmp_student_major">
-												<input type="button" value="clear" id="tmp_student_reset_btn">
-											</div>
-											<div class="row mx-auto px-auto" style="width:450px;">
-												<input type="button" id="add_student_btn" value="Thêm sinh viên">
-												<input type="button" id="mod_student_btn" value="Sửa thông tin">
-												<input type="button" id="del_student_btn" value="Xóa sinh viên">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row bg-light border my-5">
-							<table  class="w-100"></table>
-						</div>
-					</div>
-					<!-- Quan ly diem sinh vien -->
-					<div class="col-6">
-						<div  class="container-fluid bg-light my-5 ">
-							<div class="jumbotron text-center my-5 py-2">
-								<h5>QUẢN LÝ ĐIỂM SINH VIÊN</h5>
-								
-							</div>
-							<div class="row text-center mx-auto py-2 my-2">
-								<div class="col-12">
-									<input type="button" id="view_result_btn" value="Xem điểm">
-								</div>
-							</div>
-							<div class="row bg-success">
-								<table id="table_results" class="w-100"></table>
-							</div>
-						</div>	
-					</div>
-				</div>
+		
 				<!-- Quan ly danh sach mon hoc -->
 				<div class="row border">
 					<div class="col-6">
@@ -142,8 +81,8 @@ session_start();
 				</div>
 			</div>
 		</div>
-		<div class="jumbotron text-center">
-			<h3>Đại học giao thông vận tải TpHCM</h3>
+		<div class="jumbotron" style="padding-left:550px">
+			<h3>ĐẠI HỌC GIAO THÔNG VÂN TẢI TPHCM</h3>
 		</div>
 	</div>
 	<div id="add_subject_div" class="modal" role="dialog">

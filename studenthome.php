@@ -13,41 +13,10 @@ if(!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="./css/student_sidebar.css">
     <?php include('admin_css.php'); ?>
     <title>Student Dashboard</title>
-    <style>
-        .notify{
-            color: white;
-            font-size: bold;
-            position: relative;
-        }
-        .notify:hover{
-            color: rgba(245, 240, 243, 0.8);
-            text-decoration: none!important;
-             
-        }
-        .count{
-            width: 17px;
-            height: 17px;
-            border-radius: 50%;
-            background-color: red;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            position: absolute;
-            right: 130px;
-            top:-10px;
-            z-index: 99;
-            
-        }
-        .fa-angle-down{
-            padding-left: 15px;
-            text-align: center;
-        }
-        
-        
-    </style>
+    
 </head>
 <body>
     <header class="header">

@@ -17,42 +17,33 @@ $password = "";
 $db = "sms";
 
 $data = mysqli_connect($host, $user, $password, $db);
-if (isset($_POST['add_student'])) {
-    $username = $_POST['name'];
-    $user_email = $_POST['email'];
-    $user_phone = $_POST['phone'];
-    $user_password = $_POST['password'];
-    $usertype = "student";
+if (isset($_POST['add_result'])) {
+    $course_has_student_code = $_POST['c_h_s_code'];
+    $student_code = $_POST['student_code'];
+    $chuyencan = $_POST['chuyencan'];
+    $giuaky = $_POST['giuaky'];
+    $cuoiky = $_POST['cuoiky'];
+    $status = $_POST['status'];
+    $
 
-    // Sử dụng Prepared Statements để chèn dữ liệu vào cơ sở dữ liệu
-    $sql = "INSERT INTO users (username, email, phone, usertype, password) VALUES (?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($data, $sql);
+    
+    $sql_result = "INSERT INTO result (c_h_s_code, chuyencan , giuaky , cuoiky, status) 
+                                  VALUES ('$course_has_student_code','$chuyencan','$giuaky','$cuoiky','$status')";
+    $result_result = mysqli_query($data, $sql_result);
 
-    // Kiểm tra xem Prepared Statements đã được chuẩn bị thành công hay không
-    if ($stmt) {
-        // Gán các giá trị vào các tham số của Prepared Statements
-        mysqli_stmt_bind_param($stmt, "sssss", $username, $user_email, $user_phone, $usertype, $user_password);
+    $sql_course_has_student = "INSERT INTO course_has_student (c_h_s_code,course_code, student_code) 
+                               VALUES ('$course_has_student_code','$course_has_student_code', '$student_code')";
+    $result_course_has_student = mysqli_query($data, $sql_course_has_student);
 
-        // Thực thi câu lệnh Prepared Statements
-        $result = mysqli_stmt_execute($stmt);
 
-        if ($result) {
-            echo "<script type='text/javascript'>
-            alert('Data Upload Success');
-            </script>";
-        } else {
-            echo "Upload Failed";
-        }
-        
-        // Đóng Prepared Statements
-        mysqli_stmt_close($stmt);
+    if($result_result && $result_course_has_student ) {
+        echo "<script type='text/javascript'>
+        alert('Thêm điểm thành công!');
+        </script>";
     } else {
-        echo "Prepared Statement preparation failed.";
+        echo "Lỗi: " . mysqli_error($data);
     }
-
-    // Đóng kết nối
-    mysqli_close($data);
-}
+    }
 ?>
 
 
@@ -71,19 +62,25 @@ if (isset($_POST['add_student'])) {
         {
             display: inline-block;
             text-align: right;
+            
             width: 100px;
             padding-top: 10px;
             padding-bottom: 10px;
+            
         }
         .div_deg{
             background-color: skyblue;
             width: 400px;
-            padding-top: 70px;
-            padding-bottom: 70px;
+            padding-top: 40px;
+            padding-bottom: 30px;
+           
         }
         .submit{
            
             padding-top: 20px;
+        }
+        .title{
+            vertical-align: middle;
         }
     </style>
 
@@ -95,44 +92,37 @@ if (isset($_POST['add_student'])) {
     ?>
     <div class="content">
     <center>    
-    <h2>Thêm điểm</h2>
+    <h2 style="padding-top: 15px;">Thêm điểm</h2>
         <div class="div_deg">
             <form action="#" method="POST">
                 <div>
-                    <label >Mã Khóa học</label>
-                    <input type="text" name="id">
+                    <label class="title">Mã khóa học của sinh viên</label>
+                    <input type="text" name="c_h_s_code">
+                </div>
+                
+                <div>
+                    <label>Mã sinh viên</label>
+                    <input type="text" name="student_code">
                 </div>
                 <div>
-                    <label >Tên môn học</label>
-                    <input type="name" name="name">
+                    <label >Chuyên cần</label>
+                    <input type="number" name="chuyencan">
                 </div>
                 <div>
-                    <label >Phòng</label>
-                    <input type="name" name="name">
+                    <label >Giữa kỳ</label>
+                    <input type="number" name="giuaky">
                 </div>
                 <div>
-                    <label >Tên giáo viên</label>
-                    <input  type="text" name="text">
+                    <label >Cuối kỳ</label>
+                    <input  type="number" name="cuoiky">
                 </div>
                 <div>
     
-                    <label >Tên môn học</label>
-                    <input  type="text" name="text">
-                </div>
-                <div>
-                    <label >Tiết học</label>
-                    <input type="name" name="name">
-                </div>
-                <div>
-                    <label >Thời gian</label>
-                    <input type="name" name="name">
-                </div>
-                <div>
-                    <label >Thứ</label>
-                    <input type="name" name="name">
+                    <label >Trạng thái</label>
+                    <input  type="text" name="status">
                 </div>
                 <div class="submit">
-                    <input type="submit" class="btn btn-success" name="add_student" value="Chấp nhận">
+                    <input type="submit" class="btn btn-success" name="add_result" value="Chấp nhận">
                 </div>
             </form>
         </div>

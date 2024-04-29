@@ -78,8 +78,8 @@ if (isset($_POST['add_student'])) {
         .div_deg{
             background-color: skyblue;
             width: 400px;
-            padding-top: 70px;
-            padding-bottom: 70px;
+            padding-top: 40px;
+            padding-bottom: 40px;
         }
         .submit{
            
