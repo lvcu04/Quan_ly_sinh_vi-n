@@ -35,9 +35,7 @@ if(isset($_POST['add_student'])){
     $result_student = mysqli_query($data, $sql_student);
 
     if($result_users && $result_student ) {
-        echo "<script type='text/javascript'>
-        alert('Thêm sinh viên thành công!');
-        </script>";
+        header("Location: view_student.php");
     } else {
         echo "Lỗi: " . mysqli_error($data);
     }

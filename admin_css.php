@@ -1,6 +1,4 @@
 <link rel="stylesheet" type="text/css" href="./css/admin.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
-	<script src="js/jquery.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/employee.js"></script>
+<link rel="Website icon" type="png" href="./img/UTH.png">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">

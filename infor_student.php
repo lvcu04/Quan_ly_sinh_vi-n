@@ -1,10 +1,28 @@
 <?php
 session_start();
-if(!isset($_SESSION['username'])) {
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    echo "Bạn đã đăng nhập với tên đăng nhập: $username";
+} else {
+    
     header("location:login.php");
-} elseif($_SESSION['usertype'] != 'student') {
-    header("location:login.php");
+    exit; 
 }
+$host = "localhost";
+$user = "root";
+$password = "";
+$db = "sms";
+
+$data = mysqli_connect($host, $user, $password, $db);
+
+
+$sql = "SELECT * FROM users
+        WHERE username = '$username';";
+
+$result = mysqli_query($data,$sql);
+$userData = $result ->fetch_assoc();
+//Đóng data connection
+mysqli_close($data);
 ?>
 
 <!DOCTYPE html>
@@ -49,11 +67,11 @@ if(!isset($_SESSION['username'])) {
                                             <img  class="image-respontive"src="./img/user.png" style="object-fit: cover;">
                                             <br><br>
                                             <div class="form-group" >
-                                               <div class="control-label"><span id="code">MSSV</span>: <b>2251120275</b>
+                                               <div class="control-label"><span id="code">MSSV</span>: <b><?php echo $userData['username']   ?></b>
                                                </div>
                                             </div>
                                             <div class="form-group" >
-                                               <div class="control-label"><span id="name">Họ tên</span>: <b>Lê Văn Cừ</b>
+                                               <div class="control-label"><span id="name">Họ tên</span>: <b><?php echo $userData['name']   ?></b>
                                                </div>
                                             </div>
                                             <div class="form-group" >
@@ -74,7 +92,7 @@ if(!isset($_SESSION['username'])) {
                                         </div>
                                         <div class="information" >
                                             <div class="form-infor" >
-                                               <div class="control-label"><span id="code">Mã hồ sơ</span>: <b>2251120275</b>
+                                               <div class="control-label"><span id="code">Mã hồ sơ</span>: <b><?php echo $userData['username']   ?></b>
                                                </div>
                                             </div>
                                             <div class="form-infor" >
@@ -109,15 +127,14 @@ if(!isset($_SESSION['username'])) {
                                         <div class="col-md-6">
                                             <div class="information" >
                                                 <div class="form-infor" >
-                                                    <div class="control-label"><span id="birthday">Ngày sinh</span>: <b>09/07/2004</b>
+                                                   <div class="control-label"><span id="birthday">Ngày sinh</span>: <b><?php echo isset($userData['birthday']) ? $userData['birthday'] : ''; ?></b> </div>
+                                                </div>
+                                                <div class="form-infor" >
+                                                    <div class="control-label"><span id="phone">Số điện thoại</span>: <b><?php echo $userData['phone']   ?></b>
                                                     </div>
                                                 </div>
                                                 <div class="form-infor" >
-                                                    <div class="control-label"><span id="phone">Số điện thoại</span>: <b>0366796412</b>
-                                                    </div>
-                                                </div>
-                                                <div class="form-infor" >
-                                                    <div class="control-label"><span id="pob">Nơi sinh</span>: <b>Bình Phước</b>
+                                                    <div class="control-label"><span id="pob">Nơi sinh</span>: <b><?php echo $userData['pob']   ?></b>
                                                     </div>
                                                 </div>
                                             </div>
@@ -125,7 +142,7 @@ if(!isset($_SESSION['username'])) {
                                         <div class="col-md-6">
                                             <div class="information" >
                                                 <div class="form-infor" >
-                                                    <div class="control-label"><span id="major">Email</span>: <b>levancu976@gmail.com</b>
+                                                    <div class="control-label"><span id="major">Email</span>: <b><?php echo $userData['email']   ?></b>
                                                     </div>
                                                 </div>
                                                 <div class="form-infor" >

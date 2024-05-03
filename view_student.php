@@ -57,25 +57,29 @@ $result = mysqli_query($data, $sql);
         <div class="jumbotron text-center my-8 py-4 "> <h1>Quản lý danh sách sinh viên</h1></div>
        
         <div class="container">
-    <div class="row my-1 py-2 mx-1 px-3 bg-custom align-items-center">
-        <div class="col-md-6 ">
-            Hiển thị sinh viên.
-       <div class="btn btn-primary ml-2">
-            <button class="btn btn-primary btn-sm float-right " id="view_student">View</button>
-        </div> 
-    </div>
-        
-    <div class="col-md-6">
-        <div class="input-group">
-            <input type="text" class="form-control" id="input_search" placeholder="Nhập thông tin sinh viên">
-            <div class="input-group-append">
-                <button class="btn btn-success" type="button" id="search_student_btn">Tìm kiếm</button>
+                <div class="row my-1 py-2 mx-1 px-3 bg-custom align-items-center">
+            <div class="col-md-4">
+                <div class="btn btn-info ml-2">
+                    <button class="btn btn-info btn-sm float-right" id="view_student">Hiển thị sinh viên</button>
+                </div> 
             </div>
-        </div>
-    </div>
 
-        
-    </div>
+            <div class="col-md-4">
+                <div class="btn btn-warning ml-1">
+                    <button class="btn btn-warning btn-sm float-right" id="add_student">Thêm sinh viên</button>
+                </div> 
+            </div>
+            
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="input_search" placeholder="Nhập thông tin sinh viên">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="button" id="search_student_btn">Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>   
+        </div>
+
     <div class="row my-1 py-2 mx-1 px-3" id="show_table">
     <div class="col">
         <table class="table table-bordered custom-border">

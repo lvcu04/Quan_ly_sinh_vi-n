@@ -38,7 +38,7 @@ if(isset($_POST['update'])) {
                      INNER JOIN student ON users.username = student.code
                      SET users.name = '$name', users.username = '$username', users.birthday = '$birthday', 
                          users.phone = '$phone', users.pob = '$pob', student.major = '$major'
-                     WHERE student.id = $id";
+                     WHERE student.code = $username";
     $update_result = mysqli_query($data, $update_query);
 
     if($update_result) {

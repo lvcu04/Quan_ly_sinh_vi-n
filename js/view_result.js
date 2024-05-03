@@ -1,4 +1,4 @@
-document.getElementById('view_student').addEventListener('click',function(){
+document.getElementById('view_result').addEventListener('click',function(){
     var table = document.getElementById('show_table');
     if(table.style.display === 'none'){
         table.style.display = 'table';
@@ -7,13 +7,10 @@ document.getElementById('view_student').addEventListener('click',function(){
         table.style.display = 'none';
     }
 });
-
-document.getElementById("add_student").addEventListener("click", function() {
-    window.location.href = "add_student.php";
+document.getElementById("add_result").addEventListener("click", function() {
+    window.location.href = "add_result.php";
 });
-
-
-document.getElementById('search_student_btn').addEventListener('click', function() {
+document.getElementById('search_result_btn').addEventListener('click', function() {
     
     var keyword = document.getElementById('input_search').value.trim().toUpperCase();
     
