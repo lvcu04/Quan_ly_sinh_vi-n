@@ -2,7 +2,7 @@
 <aside>
         <ul>
             <li><a href="studenthome.php"><i class="fas fa-home"></i>&nbsp;&nbsp;Trang chủ</a></li>
-            <li><a href="information.php"><i class="fas fa-tv"></i>&nbsp;&nbsp;Thông tin sinh viên</a></li>
+            <li><a href="infor_student.php"><i class="fas fa-tv"></i>&nbsp;&nbsp;Thông tin sinh viên</a></li>
             <li><a href="" id="toggleStudy"><i class="fas fa-book"></i>&nbsp;&nbsp;Học tập<i class="fas fa-angle-down"></i></a>
         
             <li id="studySubmenu" style="display: none;">
