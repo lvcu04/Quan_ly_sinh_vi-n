@@ -11,6 +11,31 @@ session_start();
     {
         header("location:login.php");
     }
+
+$host = "localhost";
+$user = "root";
+$password = "";
+$db = "sms";
+
+$data = mysqli_connect($host, $user, $password, $db);
+
+$sql = "SELECT 
+			SUM(CASE WHEN diemtongket > 8 THEN 1 ELSE 0 END) AS score_gt_8,
+			SUM(CASE WHEN diemtongket BETWEEN 5 AND 8 THEN 1 ELSE 0 END) AS score_5_8,
+			SUM(CASE WHEN diemtongket < 5 THEN 1 ELSE 0 END) AS score_lt_5
+			FROM result";
+		
+$result = mysqli_query($data, $sql);
+$row = $result -> fetch_assoc();
+
+//Tính tổng số điểm 
+$total_score =$row['score_gt_8'] + $row['score_5_8'] + $row['score_lt_5'];
+
+//Tính tỷ lệ phần trăm của mỗi khoảng
+$percentage_gt_8 = ($row['score_gt_8']/$total_score)*100;
+$percentage_5_8 = ($row['score_5_8']/$total_score)*100;
+$percentage_lt_5 = ($row['score_lt_5']/$total_score)*100;
+
 ?>
 
 
@@ -118,14 +143,13 @@ session_start();
 						</div>
 			
 					</div>
-					<div class="jumbotron container mt-5 " style="margin-top: 10px !important;">
+					<div class="jumbotron container mt-5 d-flex justify-content-center align-items-center " style="margin-top: 10px !important;">
 						<div class="row">
-							<div class="col-md-9 text-center">
-								<canvas id="chart1" width="200" height="200"></canvas>
+							<div class="col-md-12 text-center">
+								<h4>Thống kê điểm học tập</h4>
+								<canvas id="chart" width="300" height="300"></canvas>
 							</div>
-							<div class="col-md-3 text-center ">
-								<canvas id="chart2" width="200" height="200"></canvas>
-							</div>
+							
 						</div>
                     </div>
 
@@ -144,7 +168,29 @@ session_start();
 		</div>
     </div>   
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+	<script>
+        var ctx = document.getElementById('chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Điểm >= 8', 'Điểm >= 5 và <8', 'Điểm < 5'],
+                datasets: [{
+                    data: [<?php echo $percentage_gt_8; ?>, <?php echo $percentage_5_8; ?>, <?php echo $percentage_lt_5; ?>],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)'
+                    ]
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    
+                }
+            }
+        });
+    </script>
 	<script src="./js/adminhome.js"></script>
 	
 </body>

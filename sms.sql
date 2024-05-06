@@ -3,19 +3,19 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2024 at 03:49 AM
+-- Generation Time: May 04, 2024 at 04:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
--- SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
--- START TRANSACTION;
--- SET time_zone = "+00:00";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
--- /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
--- /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
--- /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
--- /*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `sms`
@@ -27,24 +27,23 @@
 -- Table structure for table `course`
 --
 
-CREATE TABLE `schedule` (
-  `id` int(11) NOT NULL,
-  `c_h_s_code` varchar(50) NOT NULL
+
+CREATE TABLE teacher_student_relationship (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `teacher_code` VARCHAR(50) NOT NULL,
+    `student_code` VARCHAR(50) NOT NULL,
+    `subject_code` VARCHAR(50) NOT NULL,
+    `relationship` VARCHAR(50) DEFAULT NULL,
+    FOREIGN KEY (`teacher_code`) REFERENCES `teacher`(`code`),
+    FOREIGN KEY (`student_code`) REFERENCES `student`(`code`),
+    FOREIGN KEY (`subject_code`) REFERENCES `subject`(`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `schedule` (`id`, `c_h_s_code`)
-VALUES 
-    (5, 'INT1620_1_FALL2024'), 
-    (7, 'INT1255_1_FALL2024');
-
-ALTER TABLE `schedule`
-ADD CONSTRAINT `fk_schedule_course_has_student`
-FOREIGN KEY (`c_h_s_code`) REFERENCES `course_has_student` (`c_h_s_code`)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
-
-
-
+INSERT INTO `teacher_student_relationship` (`id`, `teacher_code`, `student_code`, `subject_code`, `relationship`) VALUES
+(1, 'HT1006', '2251120275', 'INT1620', 'Hướng dẫn làm đồ án'),
+(2, 'HT1005', '2251120325', 'INT1255', 'Giảng dạy'),
+(3, 'HT1005', '2251120321', 'INT1254', 'Giảng dạy'),
+(4, 'HT1005', '2251120319', 'INT1350', 'Giảng dạy');
 
 
 
@@ -55,19 +54,20 @@ CREATE TABLE `course` (
   `room` varchar(50) DEFAULT NULL,
   `teacher_code` varchar(50) NOT NULL,
   `subject_code` varchar(50) NOT NULL,
-  `start_time` varchar(5) DEFAULT NULL,
-  `day_of_week` varchar(50) DEFAULT NULL
+  `start_time` date DEFAULT NULL,
+  `lesson` varchar(50) DEFAULT NULL,
+  `status_course` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `course`
 --
 
-INSERT INTO `course` (`id`, `code`, `time`, `room`, `teacher_code`, `subject_code`, `start_time`, `day_of_week`) VALUES
-(18, 'INT1254_1_FALL2024', '2:00 - 5:00', 'H105', 'HT1005', 'INT1254', '2:00', 'Thứ sáu'),
-(5, 'INT1255_1_FALL2024', '09:00 - 11:00', 'H101', 'HT1005', 'INT1255', '09:00', 'Thứ hai'),
-(9, 'INT1350_1_FALL2024', '12:00 - 3:00', 'H104', 'HT1006', 'INT1350', '12:00', 'Thứ tư'),
-(6, 'INT1620_1_FALL2024', '2:00 - 5:00', 'H102', 'HT1005', 'INT1620', '2:00', 'Thứ năm');
+INSERT INTO `course` (`id`, `code`, `time`, `room`, `teacher_code`, `subject_code`, `start_time`, `day_of_week`, `status_course`) VALUES
+(18, 'INT1254_1_FALL2024', '09:25 - 11:55', 'H105', 'HT1005', 'INT1254', '2024-04-10', '4-6', 1),
+(5, 'INT1255_1_FALL2024', '09:25 - 11:55', 'H101', 'HT1005', 'INT1255', '2024-04-19', '4-6', 0),
+(9, 'INT1350_1_FALL2024', '12:10 - 14:40', 'H104', 'HT1006', 'INT1350', '2024-04-15', '7-9', 1),
+(6, 'INT1620_1_FALL2024', '14:50 - 17:20', 'H102', 'HT1005', 'INT1620', '2024-04-26', '10-12', 0);
 
 -- --------------------------------------------------------
 
@@ -79,18 +79,42 @@ CREATE TABLE `course_has_student` (
   `id` int(11) NOT NULL,
   `c_h_s_code` varchar(50) NOT NULL,
   `course_code` varchar(50) NOT NULL,
-  `student_code` varchar(50) NOT NULL
+  `student_code` varchar(50) NOT NULL,
+  `c_h_s_status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `course_has_student`
 --
 
-INSERT INTO `course_has_student` (`id`, `c_h_s_code`, `course_code`, `student_code`) VALUES
-(7, 'INT1254_1_FALL2024', 'INT1254_1_FALL2024', '2251120319'),
-(1, 'INT1255_1_FALL2024', 'INT1255_1_FALL2024', '2251120325'),
-(3, 'INT1350_1_FALL2024', 'INT1350_1_FALL2024', '2251120321'),
-(5, 'INT1620_1_FALL2024', 'INT1620_1_FALL2024', '2251120275');
+INSERT INTO `course_has_student` (`id`, `c_h_s_code`, `course_code`, `student_code`, `c_h_s_status`) VALUES
+(2, 'INT1254_1_FALL2024', 'INT1254_1_FALL2024', '2251120321', 1),
+(1, 'INT1255_1_FALL2024', 'INT1255_1_FALL2024', '2251120325', 0),
+(3, 'INT1350_1_FALL2024', 'INT1350_1_FALL2024', '2251120319', 0),
+(5, 'INT1620_1_FALL2024', 'INT1620_1_FALL2024', '2251120275', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `financial`
+--
+
+CREATE TABLE `financial` (
+  `id` int(11) NOT NULL,
+  `c_h_s_code` varchar(50) NOT NULL,
+  `tuition` decimal(10,0) DEFAULT NULL,
+  `payment` decimal(10,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `financial`
+--
+
+INSERT INTO `financial` (`id`, `c_h_s_code`, `tuition`, `payment`) VALUES
+(1, 'INT1255_1_FALL2024', 1062000, 1000000),
+(2, 'INT1254_1_FALL2024', 1062000, 1000000),
+(3, 'INT1350_1_FALL2024', 1062000, 1062000),
+(4, 'INT1620_1_FALL2024', 1062000, 1062000);
 
 -- --------------------------------------------------------
 
@@ -104,7 +128,8 @@ CREATE TABLE `result` (
   `giuaky` varchar(50) NOT NULL DEFAULT '0',
   `cuoiky` varchar(50) NOT NULL DEFAULT '0',
   `c_h_s_code` varchar(50) NOT NULL,
-  `status` varchar(50) DEFAULT NULL
+  `status` varchar(50) DEFAULT NULL,
+  `diemtongket` float GENERATED ALWAYS AS (cast(`chuyencan` as float) * 0.2 + cast(`giuaky` as float) * 0.3 + cast(`cuoiky` as float) * 0.5) STORED
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -116,6 +141,10 @@ INSERT INTO `result` (`id`, `chuyencan`, `giuaky`, `cuoiky`, `c_h_s_code`, `stat
 (2, '8', '9', '8', 'INT1255_1_FALL2024', 'Đã học'),
 (4, '7', '9', '8', 'INT1620_1_FALL2024', 'Đã học'),
 (5, '9', '6', '7', 'INT1254_1_FALL2024', 'Đã học');
+
+-- --------------------------------------------------------
+
+
 
 -- --------------------------------------------------------
 
@@ -136,7 +165,7 @@ CREATE TABLE `student` (
 INSERT INTO `student` (`id`, `code`, `major`) VALUES
 (48, '2251120275', 'Công nghệ thông tin'),
 (56, '2251120319', 'Công nghệ thông tin'),
-(55, '2251120321', 'Công nghệ thông tin'),
+(59, '2251120321', 'Công nghệ thông tin'),
 (54, '2251120325', 'Công nghệ thông tin');
 
 -- --------------------------------------------------------
@@ -207,42 +236,16 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`name`, `username`, `phone`, `birthday`, `email`, `usertype`, `password`, `pob`) VALUES
 ('Lê Văn Cừ', '2251120275', 366796412, '2004-01-02', '2251120275@ut.edu.vn', 'student', '003', 'Bình Phước'),
 ('Lê Đào Khang Thịnh', '2251120319', 124135325, '2024-01-06', '2251120319@ut.edu.vn', 'student', '002', 'Tây Ninh'),
-('Lê Hữu Thông', '2251120321', 12412412, '2024-04-11', '2251120321@ut.edu.vn', 'student', '001', 'Ninh Thuận'),
+('Lê Hữu Thông', '2251120321', 12412412, '2024-05-07', NULL, 'student', NULL, 'Ninh Thuận'),
 ('Đặng Đức Tĩnh', '2251120325', 923123444, '2024-05-01', '2251120325@ut.edu.vn', 'student', '000', 'Ninh Thuận'),
 ('ADMIN', 'admin', 366796412, '2020-04-09', 'admin@gmail.com', 'admin', '1234', 'Q1'),
 ('Nguyễn Ngọc Thạch', 'HT1005', 923123447, NULL, 'nguyenvanf@gmail.com', 'teacher', '128', 'Q4'),
 ('Nguyễn Văn Diêu', 'HT1006', 923123427, NULL, 'nguyenvans@gmail.com', 'teacher', '129', 'Q5');
 
-CREATE TABLE `financial` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `c_h_s_code` varchar(50) NOT NULL,
-  `tuition` DECIMAl (10,0),
-  `payment`DECIMAl (10,0),
-  `payment_status` varchar(50) NULL ,
-   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `financial`
---
-
-INSERT INTO `financial` (`id`, `c_h_s_code`, `tuition`, `payment`,`payment_status`) VALUES
-(1, 'INT1254_1_FALL2024', '1062000','1062000', 'Đã đóng đủ'),
-(2, 'INT1255_1_FALL2024', '1062000','1000000', 'Chưa đóng đủ'),
-(3, 'INT1350_1_FALL2024', '1062000', '1000000','Chưa đóng đủ'),
-(4, 'INT1620_1_FALL2024', '1062000', '1062000','Đã đóng đủ');
-
-
-
 --
 -- Indexes for dumped tables
 --
--- Indexes for table `financial`
-ALTER TABLE `financial`
-ADD CONSTRAINT `fk_financial_c_h_s_code`
-FOREIGN KEY (`c_h_s_code`) REFERENCES `course_has_student` (`c_h_s_code`)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
+
 --
 -- Indexes for table `course`
 --
@@ -262,12 +265,20 @@ ALTER TABLE `course_has_student`
   ADD KEY `fk_course_has_student_course_idx` (`course_code`);
 
 --
+-- Indexes for table `financial`
+--
+ALTER TABLE `financial`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_financial_c_h_s_code` (`c_h_s_code`);
+
+--
 -- Indexes for table `result`
 --
 ALTER TABLE `result`
   ADD PRIMARY KEY (`id`,`c_h_s_code`),
   ADD KEY `id` (`id`),
   ADD KEY `fk_result_course_has_student_idx` (`c_h_s_code`);
+
 
 --
 -- Indexes for table `student`
@@ -315,16 +326,16 @@ ALTER TABLE `course_has_student`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `result`
+-- AUTO_INCREMENT for table `financial`
 --
-ALTER TABLE `result`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+ALTER TABLE `financial`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `subject`
@@ -351,10 +362,16 @@ ALTER TABLE `course_has_student`
   ADD CONSTRAINT `fk_course_has_student_student` FOREIGN KEY (`student_code`) REFERENCES `student` (`code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `result`
+-- Constraints for table `financial`
 --
-ALTER TABLE `result`
-  ADD CONSTRAINT `fk_result_course_has_student` FOREIGN KEY (`c_h_s_code`) REFERENCES `course_has_student` (`c_h_s_code`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `financial`
+  ADD CONSTRAINT `fk_financial_c_h_s_code` FOREIGN KEY (`c_h_s_code`) REFERENCES `course_has_student` (`c_h_s_code`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD CONSTRAINT `fk_schedule_course_has_student` FOREIGN KEY (`c_h_s_code`) REFERENCES `course_has_student` (`c_h_s_code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student`
@@ -368,7 +385,6 @@ ALTER TABLE `student`
 ALTER TABLE `teacher`
   ADD CONSTRAINT `fk_teacher_user` FOREIGN KEY (`code`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

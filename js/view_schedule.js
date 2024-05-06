@@ -1,6 +1,5 @@
-document.getElementById('view_student').addEventListener('click',function(){
+document.getElementById('view_schedule').addEventListener('click',function(){
     var table = document.getElementById('show_table');
-    
     if(table.style.display === 'none'){
         table.style.display = 'table';
     }
@@ -8,13 +7,10 @@ document.getElementById('view_student').addEventListener('click',function(){
         table.style.display = 'none';
     }
 });
-
-document.getElementById("add_student").addEventListener("click", function() {
-    window.location.href = "add_student.php";
+document.getElementById("add_schedule").addEventListener("click", function() {
+    window.location.href = "add_schedule.php";
 });
-
-
-document.getElementById('search_student_btn').addEventListener('click', function() {
+document.getElementById('search_schedule_btn').addEventListener('click', function() {
     
     var keyword = document.getElementById('input_search').value.trim().toUpperCase();
     

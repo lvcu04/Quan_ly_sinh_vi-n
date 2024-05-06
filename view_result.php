@@ -26,6 +26,7 @@ $sql = "SELECT users.*, student.*, result.*, course_has_student.*, course.*, sub
 
 
 $result = mysqli_query($data, $sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -111,13 +112,18 @@ $result = mysqli_query($data, $sql);
                     <th>Chuyên cần</th>
                     <th>Giữa kỳ</th>
                     <th>Cuối kỳ</th>
+                    <th>Điểm tổng kết</th>
                     <th>Trạng thái</th>
                     <th>Delete</th>
                     <th>Update</th>
                 </tr>
             </thead>
             <tbody>
-                <?php while ($info = $result->fetch_assoc()) { ?>
+                <?php while ($info = $result->fetch_assoc()) { 
+                    $diemtongket = $info['chuyencan']*0.2 + $info['giuaky']*0.3 + $info['cuoiky']*0.5;
+                    
+                    
+                    ?>
                     <tr>
                         <td><?php echo $info['name']; ?></td>
                         <td><?php echo $info['c_h_s_code']; ?></td>
@@ -126,6 +132,7 @@ $result = mysqli_query($data, $sql);
                         <td><?php echo $info['chuyencan']; ?></td>
                         <td><?php echo $info['giuaky']; ?></td>
                         <td><?php echo $info['cuoiky']; ?></td>
+                        <td><?php echo $diemtongket; ?></td>
                         <td><?php echo $info['status']; ?></td>
                         <td><?php echo "<button class='btn btn-danger'><a href='delete_result.php?course_has_student_code={$info['c_h_s_code']}' class='text-white'>Delete</a></button>"; ?></td>
                         <td><?php echo "<button class='btn btn-info'><a href='update.php?course_has_student_code={$info['c_h_s_code']}' class='text-white'>Update</a></button>"; ?></td>

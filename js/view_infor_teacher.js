@@ -1,20 +1,22 @@
-document.getElementById('view_student').addEventListener('click',function(){
-    var table = document.getElementById('show_table');
-    
-    if(table.style.display === 'none'){
-        table.style.display = 'table';
+document.getElementById('view_teacher').addEventListener('click',function(){
+    var table1 = document.getElementById('show_table');
+    var table2 = document.getElementById('show_table_relationship');
+    if(table1.style.display === 'none' && table2.style.display === 'none'){
+        table1.style.display = 'table';
+        table2.style.display = 'table';
     }
     else{
-        table.style.display = 'none';
+        table1.style.display = 'none';
+        table2.style.display = 'none';
     }
 });
 
-document.getElementById("add_student").addEventListener("click", function() {
-    window.location.href = "add_student.php";
+document.getElementById("add_teacher").addEventListener("click", function() {
+    window.location.href = "add_teacher.php";
 });
 
 
-document.getElementById('search_student_btn').addEventListener('click', function() {
+document.getElementById('search_teacher_btn').addEventListener('click', function() {
     
     var keyword = document.getElementById('input_search').value.trim().toUpperCase();
     
