@@ -74,19 +74,25 @@ $result_relationship = mysqli_query($data, $sql_relationship);
        
         <div class="container">
                 <div class="row my-1 py-2 mx-1 px-3 bg-custom align-items-center">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="btn btn-info ml-2">
                     <button class="btn btn-info btn-sm float-right" id="view_teacher">Hiển thị thông tin</button>
                 </div> 
             </div>
+           
+            <div class="col-md-3">
+                <div class="btn btn-info ml-2">
+                    <button class="btn btn-info btn-sm float-right" id="view_relationship">Hiển thị mối quan hệ</button>
+                </div> 
+            </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="btn btn-warning ml-1">
                     <button class="btn btn-warning btn-sm float-right" id="add_teacher">Thêm giảng viên</button>
                 </div> 
             </div>
             
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="input-group">
                     <input type="text" class="form-control" id="input_search" placeholder="Nhập thông tin sinh viên">
                     <div class="input-group-append">
