@@ -93,8 +93,8 @@ $percentage_lt_5 = ($row['score_lt_5']/$total_score)*100;
 							<div class="col-md-3" style="height:150px">
 								<div class="card" style="background-color:darkgreen ; color:white ; height:150px">
 									<div class="card-body">
-										<i class="fas fa-chalkboard-teacher fa-3x" style="color: rgb(2, 54, 12)" id="icon-link"></i>
-										<h3 class="card-title">Giảng viên</h3>
+										<i class="fas fa-chalkboard-teacher fa-3x" style="color: rgb(2, 54, 12)" id="icon-link-teacher"></i>
+										<h3 class="card-title" id="title-link-teacher">Giảng viên</h3>
 									</div>
 								</div>
 							</div>
@@ -105,8 +105,8 @@ $percentage_lt_5 = ($row['score_lt_5']/$total_score)*100;
 							<div class="col-md-3" style="height:150px">
 								<div class="card" style="background-color:darkblue ; color:white ; height:150px">
 									<div class="card-body">
-										<i class="fas fa-book fa-3x" style="color: rgb(1, 1, 70)" id="icon-link-learning"></i>
-										<h3 class="card-title">Học tập</h3>
+										<i class="fas fa-book fa-3x" style="color: rgb(1, 1, 70)" id="icon-link-result"></i>
+										<h3 class="card-title" id="title-link-result">Học tập</h3>
 									</div>
 								</div>
 							</div>
@@ -116,7 +116,7 @@ $percentage_lt_5 = ($row['score_lt_5']/$total_score)*100;
 								<div class="card" style="background-color:cornflowerblue ; color:white ; height:150px">
 									<div class="card-body">
 										<i class="fas fa-calendar-alt fa-3x" style="color: rgb(28, 28, 80)" id="icon-link-schedule"></i>
-										<h3 class="card-title">Lịch học</h3>
+										<h3 class="card-title" id="title-link-schedule">Lịch học</h3>
 									</div>
 								</div>
 							</div>
@@ -126,7 +126,7 @@ $percentage_lt_5 = ($row['score_lt_5']/$total_score)*100;
 								<div class="card" style="background-color:lightslategray ; color:white ; height:150px">
 									<div class="card-body">
 										<i class="fas fa-money-bill-alt fa-3x" style="color: rgb(55, 55, 70);" id="icon-link-fee"></i>
-										<h3 class="card-title">Học phí</h3>
+										<h3 class="card-title" id="title-link-fee">Học phí</h3>
 									</div>
 								</div>
 							</div>
@@ -136,7 +136,7 @@ $percentage_lt_5 = ($row['score_lt_5']/$total_score)*100;
 								<div class="card" style="background-color:darkslateblue ; color:white ; height:150px">
 									<div class="card-body">
 										<i class="fas fa-file-alt fa-3x" style="color: rgb(36, 31, 63);" id="icon-link-profile"></i>
-										<h3 class="card-title">Hồ sơ</h3>
+										<h3 class="card-title" id="title-link-profile">Hồ sơ</h3>
 									</div>
 								</div>
 							</div>

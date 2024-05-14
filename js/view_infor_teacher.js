@@ -1,15 +1,27 @@
-document.getElementById('view_teacher').addEventListener('click',function(){
+document.getElementById('view_teacher').addEventListener('click', function(){
     var table1 = document.getElementById('show_table');
     var table2 = document.getElementById('show_table_relationship');
-    if(table1.style.display === 'none' && table2.style.display === 'none'){
-        table1.style.display = 'table';
-        table2.style.display = 'table';
-    }
-    else{
+    if(table1.style.display === 'none'){
+        table1.style.display = 'table'; 
+        table2.style.display = 'none'; 
+    } else {
         table1.style.display = 'none';
-        table2.style.display = 'none';
+        table2.style.display = 'none'; 
     }
 });
+document.getElementById('view_relationship').addEventListener('click',function(){
+    var table2 = document.getElementById('show_table_relationship');
+    var table1 = document.getElementById('show_table');
+    if( table2.style.display === 'none'){
+        table2.style.display = 'table';
+        table1.style.display = 'none'; 
+    }
+    else{
+        table2.style.display = 'none';
+        table1.style.display = 'none'; 
+    }
+});
+
 
 document.getElementById("add_teacher").addEventListener("click", function() {
     window.location.href = "add_teacher.php";
