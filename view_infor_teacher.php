@@ -21,11 +21,11 @@ $sql = "SELECT teacher.*, users.*
         INNER JOIN users ON users.username = teacher.code";
 $result = mysqli_query($data, $sql);
 
-$sql_relationship = "SELECT teacher_student_relationship.*, teacher.* , student.*, users_student.name AS student_name, users_teacher.name AS teacher_name, subject.*
-                        FROM teacher_student_relationship
-                        INNER JOIN teacher ON teacher.code = teacher_student_relationship.teacher_code
-                        INNER JOIN student ON student.code = teacher_student_relationship.student_code
-                        INNER JOIN subject ON subject.code = teacher_student_relationship.subject_code
+$sql_relationship = "SELECT relationship.*, teacher.* , student.*, users_student.name AS student_name, users_teacher.name AS teacher_name, subject.*
+                        FROM relationship
+                        INNER JOIN teacher ON teacher.code = relationship.teacher_code
+                        INNER JOIN student ON student.code = relationship.student_code
+                        INNER JOIN subject ON subject.code = relationship.subject_code
                         INNER JOIN users AS users_student ON users_student.username = student.code
                         INNER JOIN users AS users_teacher ON users_teacher.username = teacher.code";
 

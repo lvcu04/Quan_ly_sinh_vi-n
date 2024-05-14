@@ -1,4 +1,3 @@
-
 <?php
 
 session_start();
@@ -19,22 +18,33 @@ $db = "sms";
 
 $data = mysqli_connect($host, $user, $password, $db);
 
-$sql = "SELECT 
+$sql_result = "SELECT 
 			SUM(CASE WHEN diemtongket > 8 THEN 1 ELSE 0 END) AS score_gt_8,
 			SUM(CASE WHEN diemtongket BETWEEN 5 AND 8 THEN 1 ELSE 0 END) AS score_5_8,
 			SUM(CASE WHEN diemtongket < 5 THEN 1 ELSE 0 END) AS score_lt_5
 			FROM result";
 		
-$result = mysqli_query($data, $sql);
+$result = mysqli_query($data, $sql_result);
 $row = $result -> fetch_assoc();
 
-//Tính tổng số điểm 
 $total_score =$row['score_gt_8'] + $row['score_5_8'] + $row['score_lt_5'];
 
-//Tính tỷ lệ phần trăm của mỗi khoảng
-$percentage_gt_8 = ($row['score_gt_8']/$total_score)*100;
-$percentage_5_8 = ($row['score_5_8']/$total_score)*100;
-$percentage_lt_5 = ($row['score_lt_5']/$total_score)*100;
+$percentage_gt_8 = ($row['score_gt_8'] / $total_score) * 100 ;
+$percentage_5_8 = ($row['score_5_8'] / $total_score) * 100 ;
+$percentage_lt_5 = ($row['score_lt_5'] / $total_score) * 100 ;
+
+$sql_student = "SELECT 
+					SUM(CASE WHEN major = 'Công nghệ thông tin' THEN 1 ELSE 0 END) AS cntt,
+					SUM(CASE WHEN major = 'Hệ thống thông tin quản lý' THEN 1 ELSE 0 END) AS httt,
+					SUM(CASE WHEN major = 'Mạng máy tính và truyền thông dữ liệu' THEN 1 ELSE 0 END) AS mmtt
+					FROM student";
+$result_student = mysqli_query($data,$sql_student);
+$row_student = $result_student ->fetch_assoc();
+
+$row_cntt = $row_student['cntt'];
+$row_httt = $row_student['httt'];
+$row_mmtt = $row_student['mmtt'];
+
 
 ?>
 
@@ -143,39 +153,60 @@ $percentage_lt_5 = ($row['score_lt_5']/$total_score)*100;
 						</div>
 			
 					</div>
-					<div class="jumbotron container mt-5 d-flex justify-content-center align-items-center " style="margin-top: 10px !important;">
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<h4>Thống kê điểm học tập</h4>
-								<canvas id="chart" width="300" height="300"></canvas>
+
+					<div class="container mt-3"  style="padding: 0px !important;">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="jumbotron d-flex justify-content-center align-items-center" style="margin-top: 10px !important;">
+										<div class="row">
+											<div class="col-md-12 text-center">
+												<h4>Thống kê điểm học tập</h4>
+												<canvas id="chart1" width="300" height="300"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="jumbotron d-flex justify-content-center align-items-center" style="margin-top: 10px !important;">
+										<div class="row">
+											<div class="col-md-12 text-center">
+												<h4>Thống kê theo từng ngành</h4>
+												<canvas id="chart2" width="300" height="300"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-							
 						</div>
-                    </div>
 
 				</div>
-					
+				<div class="container mt-1 title">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<div class="jumbotron d-flex justify-content-center align-items-center">
+								<h3>ĐẠI HỌC GIAO THÔNG VÂN TẢI TP.HCM</h3>
+							</div>
+						</div>
+                    </div>
+                </div>
+							
+		        </div> 
+			
         </div>
-	        
-		</div>	
-
-	         
-
-	</div>
-			<!-- <div class="jumbotron" style="padding-left:550px ">
-				<h3>ĐẠI HỌC GIAO THÔNG VÂN TẢI TPHCM</h3>
-			</div> -->
-		</div>
-    </div>   
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script>
-        var ctx = document.getElementById('chart').getContext('2d');
-        var myChart = new Chart(ctx, {
+    document.addEventListener("DOMContentLoaded", function() {
+        var ctx1 = document.getElementById('chart1').getContext('2d');
+        var percentage_gt_8 = <?php echo $percentage_gt_8; ?>;
+        var percentage_5_8 = <?php echo $percentage_5_8; ?>;
+        var percentage_lt_5 = <?php echo $percentage_lt_5; ?>;
+        
+        var myChart1 = new Chart(ctx1, {
             type: 'pie',
             data: {
                 labels: ['Điểm >= 8', 'Điểm >= 5 và <8', 'Điểm < 5'],
                 datasets: [{
-                    data: [<?php echo $percentage_gt_8; ?>, <?php echo $percentage_5_8; ?>, <?php echo $percentage_lt_5; ?>],
+                    data: [percentage_gt_8, percentage_5_8, percentage_lt_5],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.7)',
                         'rgba(54, 162, 235, 0.7)',
@@ -186,11 +217,42 @@ $percentage_lt_5 = ($row['score_lt_5']/$total_score)*100;
             options: {
                 title: {
                     display: true,
-                    
+                    text: 'Biểu đồ điểm số'
                 }
             }
         });
+
+        var ctx2 = document.getElementById('chart2').getContext('2d');
+
+			var myChart2 = new Chart(ctx2, {
+				type: 'bar',
+				data: {
+					labels: ['CNTT', 'HTTT', 'MMTT'],
+					datasets: [{
+						label: 'Số lượng sinh viên',
+						backgroundColor: ['rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)', 'rgba(255, 206, 86, 0.7)'],
+						borderColor: 'rgba(54, 162, 235, 1)',
+						borderWidth: 1,
+						data: [<?php echo $row_cntt; ?>, <?php echo $row_httt; ?>, <?php echo $row_mmtt; ?>,5,6,7,8,9,10]
+					}]
+				},
+				options: {
+					scales: {
+						//truc y
+						yAxes: [{
+							ticks: {
+								beginAtZero: true,
+								max:10
+							}
+						}]
+					}
+				}
+			});
+
+	});
     </script>
+
+
 	<script src="./js/adminhome.js"></script>
 	
 </body>

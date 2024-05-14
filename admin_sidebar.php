@@ -1,9 +1,13 @@
 <header class="header">
         <a href="adminhome.php">Trang chủ</a>
+        
         <div class="logout" >
             <a href="logout.php" class="btn btn-primary">Đăng xuất</a>
         </div>
-
+        <div class="user-info">
+                <img src="./img/user.png" alt="user-logo" style="width:30px;">
+                <span>ADMIN</span> 
+        </div>
     </header>
     <aside>
 

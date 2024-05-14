@@ -16,9 +16,8 @@ $db = "sms";
 
 $data = mysqli_connect($host, $user, $password, $db);
 
-$sql = "SELECT course_has_student.*, course.*,subject.*,teacher.*,users.*
-        FROM course_has_student
-        INNER JOIN course ON  course.code = course_has_student.course_code
+$sql = "SELECT course.*,subject.*,teacher.*,users.*,course.code as course_code
+        FROM course
         INNER JOIN subject ON  subject.code = course.subject_code
         INNER JOIN teacher ON  teacher.code = course.teacher_code
         INNER JOIN users ON users.username = teacher.code
@@ -105,7 +104,7 @@ $result = mysqli_query($data, $sql);
             <tbody>
                 <?php while ($info = $result->fetch_assoc()) { ?>
                     <tr>
-                        <td><?php echo $info['c_h_s_code']; ?></td>
+                        <td><?php echo $info['course_code']; ?></td>
                         <td><?php echo $info['subject_code']; ?></td>
                         <td><?php echo $info['subjectname']; ?></td>
                         <td><?php echo $info['start_time']; ?></td>

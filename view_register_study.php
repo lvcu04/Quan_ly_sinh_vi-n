@@ -56,7 +56,7 @@ $data = mysqli_connect($host, $user, $password, $db);
                <div class="row my-1 py-2 mx-1 px-3 bg-custom align-items-center">
            <div class="col-md-4">
                <div class="btn btn-info ml-2">
-                   <button class="btn btn-info btn-sm float-right" id="view_student">Hiển thị đăng ký</button>
+                   <button class="btn btn-info btn-sm float-right" id="view_register">Hiển thị đăng ký</button>
                </div> 
            </div>
 
@@ -107,7 +107,7 @@ $data = mysqli_connect($host, $user, $password, $db);
                             <tbody>
                                 <?php
                                 //Lấy danh sách sinh viên đã đăng ký môn đó
-                                $sql_students = "SELECT users.*, student.code AS studentcode, course_has_student.*, course.*, subject.*
+                                $sql_students = "SELECT users.*, student.code AS studentcode ,student.major AS student_major, course_has_student.*, course.*, subject.*
                                                 FROM course_has_student
                                                 INNER JOIN student ON student.code = course_has_student.student_code
                                                 INNER JOIN course ON course.code = course_has_student.course_code
@@ -123,7 +123,7 @@ $data = mysqli_connect($host, $user, $password, $db);
                                         <td><?php echo $stt++; ?></td>
                                         <td><?php echo $info['name']; ?></td>
                                         <td><?php echo $info['studentcode']; ?></td>
-                                        <td><?php echo $info['major']; ?></td>
+                                        <td><?php echo $info['student_major']; ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -133,6 +133,6 @@ $data = mysqli_connect($host, $user, $password, $db);
             </div>
         </center>
     </div>
-    <script src="./js/view_student.js"></script>
+    <script src="./js/view_register_study.js"></script>
 </body>
 </html>

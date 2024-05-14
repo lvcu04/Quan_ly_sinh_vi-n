@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
-    echo "Bạn đã đăng nhập với tên đăng nhập: $username";
+   
 } else {
     
     header("location:login.php");
