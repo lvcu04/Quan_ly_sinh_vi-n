@@ -1,6 +1,5 @@
 <?php
-
-error_reporting(0);
+// error_reporting(0);
 session_start();
 $host="localhost";
 
@@ -49,5 +48,4 @@ if($data==false)
             header("location:login.php");
         }
     }
-
 ?>

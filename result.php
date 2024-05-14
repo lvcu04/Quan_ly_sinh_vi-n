@@ -19,7 +19,7 @@ $sql = "SELECT users.*, student.*, result.*, course_has_student.*, course.*, sub
         FROM result
         INNER JOIN course_has_student ON result.c_h_s_code = course_has_student.c_h_s_code
         INNER JOIN student ON student.code = course_has_student.student_code
-        INNER JOIN course ON course.code = course_has_student.course_code
+        INNER JOIN course ON course.code_course = course_has_student.course_code
         INNER JOIN subject ON subject.code = course.subject_code
         INNER JOIN users ON users.username = student.code
         WHERE users.username = '$username'; ";
