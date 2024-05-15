@@ -9,7 +9,7 @@
             <a href="result.php">Kết quả học tập</a>
             <br>
                 <br>
-            <a href="#">Lịch học</a>
+            <a href="schedule.php">Lịch học</a>
             </li>
         
             

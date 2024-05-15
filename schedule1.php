@@ -30,6 +30,19 @@ $courses = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $courses[$row['start_time']][] = $row;
 }
+
+// Sau khi hiển thị môn học, tăng số lần hiển thị lên 1 và kiểm tra số lần hiển thị đã đủ hay chưa
+$numWeeksToShow = 3; // Số tuần mà môn học nên được hiển thị
+foreach ($courses as $date => $dayCourses) {
+    foreach ($dayCourses as $course) {
+        $updateSql = "UPDATE course SET display_count = display_count + 1 WHERE id = '{$course['id']}'";
+        mysqli_query($data, $updateSql);
+
+        if ($course['display_count'] >= $numWeeksToShow * 5) {
+            unset($courses[$date]);
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +52,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="./css/student_sidebar.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <?php include('admin_css.php'); ?>
     <title>Kết quả học tập</title>
     <style>
@@ -83,17 +95,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     .table-custom .odd {
         background-color: #9fffcb;
     }
-    .button-clicked {
-    background-color: lightblue;
-    transition: background-color 0.3s ease; /* Thời gian và kiểu chuyển đổi */
-}
-.button-group {
-            margin-bottom: 10px;
-        }
-
-        .button-group button {
-            margin-right: 5px;
-        }
 
     </style>
 
@@ -104,7 +105,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <a href="studenthome.php"><img src="./img/logo-uth.png" style="max-height: 40px;"></a>
         
         <div class="logout">
-            <a class="notify" href="notify.html"><i class="fa fa-bell"><div class="count">9</div>&nbsp;&nbsp;</i>
+            <a class="notify" href="https://sv.ut.edu.vn/sinh-vien/dm-tin-tuc/thong-bao-chung.html"><i class="fa fa-bell"><div class="count">*</div>&nbsp;&nbsp;</i>
             Tin tức-Thông báo&nbsp;&nbsp;</a>
             <a href="logout.php" class="btn btn-primary">Đăng xuất</a>
         </div>
@@ -112,16 +113,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     <?php include('student_sidebar.php'); ?>
 <div class="container-main">
     <span class="bold">Lịch học, Lịch thi</span> <br>
-    <div class="button-group">
-        <button id="beforeWeekButton" class="btn btn-info" onclick="beforeWeek()">Tuần trước</button>
-        <button id="nextWeekButton" class="btn btn-info" onclick="nextWeek()">Tuần tiếp theo</button>
-    </div>
-    <p class="mt-3">Ngày hiện tại: 
-    <span id="currentDate" data-date="<?php echo date('Y-m-d'); ?>" class="badge badge-primary">
-        <?php echo date('d/m/Y'); ?>
-    </span>
-</p>
-
+    <button style = "background-color: skyblue; margin:10px 5px 0px 0px;"onclick = " beforeWeek()">Tuần trước</button>
+    <button style = "background-color: skyblue; margin:10px 5px 0px 0px; "onclick="nextWeek()">Tuần tiếp theo</button>
+    <p>Ngày hiện tại: <span id="currentDate" data-date="<?php echo date('Y-m-d'); ?>"><?php echo date('d/m/Y'); ?></span></p>
     <table class="table-custom">
         <thead>
             <tr>
@@ -141,7 +135,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <?php
     for ($i = 1; $i <= 7; $i++) {
         $date = date('Y-m-d', strtotime($firstDayOfWeek . " +$i day"));
-        echo "<td class = jumbotron style='height : 120px; width: 100px;'>";
+        echo "<td style='height : 120px;'>";
         if (isset($courses[$date])) {
             foreach ($courses[$date] as $course) {
                 if ($course['time'] < '12:10') {
@@ -188,16 +182,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 <script>
 function beforeWeek() {
-    var beforeWeekButton = document.getElementById('beforeWeekButton');
-    beforeWeekButton.classList.add('button-clicked'); // Thêm lớp khi click
-
-    setTimeout(function() {
-        beforeWeekButton.classList.remove('button-clicked'); // Loại bỏ lớp sau thời gian chuyển đổi
-    }, 300); // 300ms là thời gian chuyển đổi trong CSS
-
-    var nextWeekButton = document.getElementById('nextWeekButton');
-    nextWeekButton.classList.remove('button-clicked'); // Loại bỏ lớp nếu có từ trước
-
     var currentDateElement = document.getElementById('currentDate');
     var currentDate = new Date(currentDateElement.getAttribute('data-date'));
     var beforeWeekDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - 7);
@@ -207,16 +191,6 @@ function beforeWeek() {
 }
 
 function nextWeek() {
-    var nextWeekButton = document.getElementById('nextWeekButton');
-    nextWeekButton.classList.add('button-clicked'); // Thêm lớp khi click
-
-    setTimeout(function() {
-        nextWeekButton.classList.remove('button-clicked'); // Loại bỏ lớp sau thời gian chuyển đổi
-    }, 300); // 300ms là thời gian chuyển đổi trong CSS
-
-    var beforeWeekButton = document.getElementById('beforeWeekButton');
-    beforeWeekButton.classList.remove('button-clicked'); // Loại bỏ lớp nếu có từ trước
-
     var currentDateElement = document.getElementById('currentDate');
     var currentDate = new Date(currentDateElement.getAttribute('data-date'));
     var nextWeekDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 7);
@@ -224,7 +198,6 @@ function nextWeek() {
     currentDateElement.setAttribute('data-date', formatDate(nextWeekDate));
     updateWeekDates(nextWeekDate);
 }
-
 
 function formatDate(date) {
     var day = date.getDate();
@@ -246,8 +219,6 @@ function updateWeekDates(currentDate) {
     }
 }
 </script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body> 
 </html>
