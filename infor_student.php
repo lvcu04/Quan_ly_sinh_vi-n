@@ -51,11 +51,7 @@ mysqli_close($data);
         <a href="studenthome.php"><img src="./img/logo-uth.png" style="max-height: 40px;"></a>
         
         <div class="logout">
-<<<<<<< HEAD
-            <a class="notify" href="#"><i class="fa fa-bell"><div class="count">9</div>&nbsp;&nbsp;</i>
-=======
         <a class="notify" href="notify.html"><i class="fa fa-bell"><div class="count">9</div>&nbsp;&nbsp;</i>
->>>>>>> origin/main
             Tin tức-Thông báo&nbsp;&nbsp;</a>
             <a href="logout.php" class="btn btn-primary">Đăng xuất</a>
         </div>

@@ -19,19 +19,11 @@ $currentDate = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
 $currentDate = date('Y-m-d', strtotime($currentDate));
 $firstDayOfWeek = date('Y-m-d', strtotime('last sunday', strtotime($currentDate)));
 
-<<<<<<< HEAD
 $sql = "SELECT course.*, subject.*, teacher.*, users.*, course.code as code_course
         FROM course, subject, teacher, users
         WHERE course.subject_code = subject.code
         AND course.teacher_code = teacher.code
         AND teacher.code = users.username";
-=======
-$sql = "SELECT course.*, subject.*,teacher.*,users.*, course.code as code_course
-        FROM course, subject,teacher, users
-        where course.subject_code = subject.code
-        and course.teacher_code = teacher.code
-        and teacher.code = users.username";
->>>>>>> origin/main
 $result = mysqli_query($data, $sql);
 
 $courses = [];
@@ -86,46 +78,28 @@ while ($row = mysqli_fetch_assoc($result)) {
     }
 
     .table-custom .even {
-<<<<<<< HEAD
         background-color: #0099cc; 
     }
 
     .table-custom .odd {
         background-color: #0099cc;
-=======
-        background-color: #9fffcb; 
-    }
-
-    .table-custom .odd {
-        background-color: #9fffcb;
->>>>>>> origin/main
     }
     .button-clicked {
     background-color: lightblue;
     transition: background-color 0.3s ease; /* Thời gian và kiểu chuyển đổi */
 }
-<<<<<<< HEAD
-    .button-group {
-=======
 .button-group {
->>>>>>> origin/main
             margin-bottom: 10px;
         }
 
         .button-group button {
             margin-right: 5px;
         }
-<<<<<<< HEAD
     
         .portlet-title{
             border: none!important;
         }
     </style>
-=======
-
-    </style>
-
->>>>>>> origin/main
 </head>
 
 <body>
@@ -140,7 +114,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     </header>
     <?php include('student_sidebar.php'); ?>
 <div class="container-main">
-<<<<<<< HEAD
     <div class="row">
         <div class="col-md-10 col-xs-12">
             <div class="box-df">
@@ -222,81 +195,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 </div>
 
 
-=======
-    <span class="bold">Lịch học, Lịch thi</span> <br>
-    <div class="button-group">
-        <button id="beforeWeekButton" class="btn btn-info" onclick="beforeWeek()">Tuần trước</button>
-        <button id="nextWeekButton" class="btn btn-info" onclick="nextWeek()">Tuần tiếp theo</button>
-    </div>
-    <p class="mt-3">Ngày hiện tại: 
-    <span id="currentDate" data-date="<?php echo date('Y-m-d'); ?>" class="badge badge-primary">
-        <?php echo date('d/m/Y'); ?>
-    </span>
-</p>
-
-    <table class="table-custom">
-        <thead>
-            <tr>
-                <th style = "background-color:#9fffcb">Ca học</th> 
-                <th class="even">Thứ 2<br/><span class="week-date"><?php echo date('d/m/Y', strtotime($firstDayOfWeek . ' +1 day')); ?></span></th>
-                <th class="odd">Thứ 3<br/><span class="week-date"><?php echo date('d/m/Y', strtotime($firstDayOfWeek . ' +2 day')); ?></span></th>
-                <th class="even">Thứ 4<br/><span class="week-date"><?php echo date('d/m/Y', strtotime($firstDayOfWeek . ' +3 day')); ?></span></th>
-                <th class="odd">Thứ 5<br/><span class="week-date"><?php echo date('d/m/Y', strtotime($firstDayOfWeek . ' +4 day')); ?></span></th>
-                <th class="even">Thứ 6<br/><span class="week-date"><?php echo date('d/m/Y', strtotime($firstDayOfWeek . ' +5 day')); ?></span></th>
-                <th class="odd">Thứ 7<br/><span class="week-date"><?php echo date('d/m/Y', strtotime($firstDayOfWeek . ' +6 day')); ?></span></th>
-                <th class="even">Chủ nhật<br/><span class="week-date"><?php echo date('d/m/Y', strtotime($firstDayOfWeek)); ?></span></th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr>
-    <td style="text-align: center;background-color: rgba(246,248,206,1)"><strong>Ca sáng</strong></td>
-    <?php
-    for ($i = 1; $i <= 7; $i++) {
-        $date = date('Y-m-d', strtotime($firstDayOfWeek . " +$i day"));
-        echo "<td class = jumbotron style='height : 120px; width: 100px;'>";
-        if (isset($courses[$date])) {
-            foreach ($courses[$date] as $course) {
-                if ($course['time'] < '12:10') {
-                    echo "<p><strong>{$course['code_course']} - {$course['subjectname']}</strong></p>";
-                    echo "<p>Tiết học: {$course['lesson']}</p>";
-                    echo "<p>Giờ:  {$course['time']}</p>";
-                    echo "<p>Phòng: {$course['room']}</p>";
-                    echo "<p>GV: {$course['name']}</p>";
-                }
-            }
-        }
-        echo "</td>";
-    }
-    ?>
-</tr>
-<tr>
-    <td style="text-align: center; background-color: rgba(246,248,206,1)"><strong>Ca chiều</strong></td>
-    <?php
-    for ($i = 1; $i <= 7; $i++) {
-        $date = date('Y-m-d', strtotime($firstDayOfWeek . " +$i day"));
-        echo "<td class = jumbotron style='height : 120px; width: 100px;'>";
-        if (isset($courses[$date])) {
-            foreach ($courses[$date] as $course) {
-                if ($course['time'] >= '12:10') {
-                    echo "<p><strong>{$course['code_course']} - {$course['subjectname']}</strong></p>";
-                    echo "<p>Tiết học: {$course['lesson']}</p>";
-                    echo "<p>Giờ:  {$course['time']}</p>";
-                    echo "<p>Phòng: {$course['room']}</p>";
-                    echo "<p>GV: {$course['name']}</p>";
-                }
-            }
-        }
-        echo "</td>";
-    }
-    ?>
-</tr>
-
-
-        </tbody>
-    </table>   
-</div>
-
->>>>>>> origin/main
 <script src="./js/student_sidebar.js"></script>
 
 <script>
@@ -359,12 +257,5 @@ function updateWeekDates(currentDate) {
     }
 }
 </script>
-<<<<<<< HEAD
-
-=======
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
->>>>>>> origin/main
 </body> 
 </html>
