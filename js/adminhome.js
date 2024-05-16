@@ -4,6 +4,18 @@ document.getElementById("icon-link-student").addEventListener("click",function()
 document.getElementById("title-link-student").addEventListener("click",function(){
     window.location.href="view_student.php";
 })
+document.getElementById("icon-link-subject").addEventListener("click",function(){
+    window.location.href="view_register_study.php";
+})
+document.getElementById("title-link-subject").addEventListener("click",function(){
+    window.location.href="view_register_study.php";
+})
+document.getElementById("icon-link-class").addEventListener("click",function(){
+    window.location.href="view_schedule.php";
+})
+document.getElementById("title-link-class").addEventListener("click",function(){
+    window.location.href="view_schedule.php";
+})
 document.getElementById("icon-link-teacher").addEventListener("click",function(){
     window.location.href="view_infor_teacher.php";
 })

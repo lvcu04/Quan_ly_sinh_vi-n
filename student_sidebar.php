@@ -9,12 +9,12 @@
             <a href="result.php">Kết quả học tập</a>
             <br>
                 <br>
-            <a href="#">Lịch học</a>
+            <a href="schedule.php">Lịch học</a>
             </li>
         
             
-            <li><a href="#"><i class="fas fa-check-square"></i>&nbsp;&nbsp;Đăng ký học phần</a></li>
-            <li><a href="#"><i class="fas fa-credit-card"></i>&nbsp;&nbsp;Học phí</a></li>
+            <li><a href="register_study.php"><i class="fas fa-check-square"></i>&nbsp;&nbsp;Đăng ký học phần</a></li>
+            <li><a href="financial.php"><i class="fas fa-credit-card"></i>&nbsp;&nbsp;Học phí</a></li>
             <li><a href="#"><i class="fas fa-cog"></i>&nbsp;&nbsp;Khác</a></li>
 
         </ul>

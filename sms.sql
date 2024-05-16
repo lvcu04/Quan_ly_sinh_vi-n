@@ -44,13 +44,13 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`id`, `code`, `time`, `room`, `teacher_code`, `subject_code`, `start_time`, `lesson`, `status_course`) VALUES
-(18, 'INT1254_FALL2024', '09:25 - 11:55', 'H105', 'HT1008', 'INT1254', '2024-04-10', '4-6', 1),
-(5, 'INT1255_FALL2024', '09:25 - 11:55', 'H101', 'HT1003', 'INT1255', '2024-04-19', '4-6', 0),
-(9, 'INT1350_FALL2024', '12:10 - 14:40', 'H104', 'HT1006', 'INT1350', '2024-04-15', '7-9', 1),
-(8, 'INT1360_FALL2024', '09:25 - 11:55', 'H301', 'HT1007', 'INT1360', '2024-05-11', '4-6', 1),
-(6, 'INT1620_FALL2024', '14:50 - 17:20', 'H102', 'HT1009', 'INT1620', '2024-04-26', '10-12', 0),
-(3, 'INT1630_FALL2024', '12:00 - 3:00', 'H201', 'HT1006', 'INT1630', '2024-05-09', '7-9', 1),
-(4, 'INT1645_FALL2024', '12:00 - 3:00', 'H202', 'HT1004', 'INT1645', '2024-05-09', '7-9', 1);
+(18, 'INT1254_FALL2024', '09:25 - 11:55', 'H105', 'HT1008', 'INT1254', '2024-05-14', '4-6', 1),
+(5, 'INT1255_FALL2024', '09:25 - 11:55', 'H101', 'HT1003', 'INT1255', '2024-05-18', '4-6', 0),
+(9, 'INT1350_FALL2024', '12:10 - 14:40', 'H104', 'HT1006', 'INT1350', '2024-05-17', '7-9', 1),
+(8, 'INT1360_FALL2024', '09:25 - 11:55', 'H301', 'HT1007', 'INT1360', '2024-05-15', '4-6', 1),
+(6, 'INT1620_FALL2024', '14:50 - 17:20', 'H102', 'HT1009', 'INT1620', '2024-05-14', '10-12', 0),
+(3, 'INT1630_FALL2024', '12:00 - 3:00', 'H201', 'HT1006', 'INT1630', '2024-05-16', '7-9', 1),
+(4, 'INT1645_FALL2024', '12:00 - 3:00', 'H202', 'HT1004', 'INT1645', '2024-05-13', '7-9', 1);
 
 -- --------------------------------------------------------
 
@@ -460,6 +460,9 @@ ALTER TABLE `student`
 ALTER TABLE `teacher`
   ADD CONSTRAINT `fk_teacher_user` FOREIGN KEY (`code`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
+
+ALTER TABLE course
+ADD COLUMN display_count INT DEFAULT 0;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

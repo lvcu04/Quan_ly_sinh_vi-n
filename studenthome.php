@@ -17,13 +17,14 @@ if(!isset($_SESSION['username'])) {
     <?php include('admin_css.php'); ?>
     <title>Student Dashboard</title>
     
+    
 </head>
 <body>
     <header class="header">
         <a href="studenthome.php"><img src="./img/logo-uth.png" style="max-height: 40px;"></a>
         
         <div class="logout">
-        <a class="notify" href="#"><i class="fa fa-bell"><div class="count">9</div>&nbsp;&nbsp;</i>
+        <a class="notify" href="notify.html"><i class="fa fa-bell"><div class="count">9</div>&nbsp;&nbsp;</i>
             Tin tức-Thông báo&nbsp;&nbsp;</a>
             <a href="logout.php" class="btn btn-primary">Đăng xuất</a>
         </div>
@@ -31,7 +32,7 @@ if(!isset($_SESSION['username'])) {
     
     
         <?php include('student_sidebar.php'); ?>
-    
+        
         <script src="./js/student_sidebar.js"></script>
 </body>
 </html>

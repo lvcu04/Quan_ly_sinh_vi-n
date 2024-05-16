@@ -108,7 +108,7 @@ $result = mysqli_query($data, $sql);
                         <td><?php echo $info['chuyencan']; ?></td>
                         <td><?php echo $info['giuaky']; ?></td>
                         <td><?php echo $info['cuoiky']; ?></td>
-                        <td><?php echo $diemtongket; ?></td>
+                        <td><?php echo number_format($diemtongket,1); ?></td>
                         <td><?php echo $diemchu; ?></td>
                         <td><?php echo $xephang; ?></td>
                     </tr>

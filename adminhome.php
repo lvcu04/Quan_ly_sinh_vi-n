@@ -84,7 +84,7 @@ $row_mmtt = $row_student['mmtt'];
 								<div class="card" style="background-color:orange ; color:white ; height:150px">
 									<div class="card-body">
 										<i class="fas fa-users fa-3x" style="color: rgb(113, 77, 3);" id="icon-link-class"></i>
-										<h3 class="card-title">Lớp</h3>
+										<h3 class="card-title-class">Lớp</h3>
 									</div>
 								</div>
 							</div>
@@ -93,8 +93,8 @@ $row_mmtt = $row_student['mmtt'];
 							<div class="col-md-3" style="height:150px">
 								<div class="card" style="background-color:darkred ; color:white ; height:150px">
 									<div class="card-body">
-										<i class="fas fa-book-open fa-3x" style="color: rgb(52, 4, 4)" id="icon-link"></i>
-										<h3 class="card-title">Môn học</h3>
+										<i class="fas fa-book-open fa-3x" style="color: rgb(52, 4, 4)" id="icon-link-subject"></i>
+										<h3 class="card-title-subject">Môn học</h3>
 									</div>
 								</div>
 							</div>
@@ -193,6 +193,7 @@ $row_mmtt = $row_student['mmtt'];
 		        </div> 
 			
         </div>
+	<script src="./js/adminhome.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -253,7 +254,7 @@ $row_mmtt = $row_student['mmtt'];
     </script>
 
 
-	<script src="./js/adminhome.js"></script>
+	
 	
 </body>
 </html>

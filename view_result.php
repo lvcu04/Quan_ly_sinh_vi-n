@@ -132,7 +132,7 @@ $result = mysqli_query($data, $sql);
                         <td><?php echo $info['chuyencan']; ?></td>
                         <td><?php echo $info['giuaky']; ?></td>
                         <td><?php echo $info['cuoiky']; ?></td>
-                        <td><?php echo $diemtongket; ?></td>
+                        <td><?php echo number_format($diemtongket,1); ?></td>
                         <td><?php echo $info['status']; ?></td>
                         <td><?php echo "<button class='btn btn-danger'><a href='delete_result.php?course_has_student_code={$info['c_h_s_code']}' class='text-white'>Delete</a></button>"; ?></td>
                         <td><?php echo "<button class='btn btn-info'><a href='update.php?course_has_student_code={$info['c_h_s_code']}' class='text-white'>Update</a></button>"; ?></td>
